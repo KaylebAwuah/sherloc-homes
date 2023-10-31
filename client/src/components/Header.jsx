@@ -31,7 +31,7 @@ export default function Header() {
             <li className=" text-slate-700 hover:underline">About</li>
           </Link>
           <Link to="/sign-in">
-            <li className=" text-slate-700 hover:underline font-normal hover:font-bold">
+            <li className=" text-slate-900 hover:underline font-normal hover:font-bold">
               Sign In
             </li>
           </Link>
