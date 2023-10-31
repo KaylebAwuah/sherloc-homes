@@ -1,4 +1,5 @@
 const User = require('../models/user.model.js')
+const errorHandler = require('../utils/error.js')
 const bcryptjs = require('bcryptjs')
 
 const signup = async (req, res, next) => {
