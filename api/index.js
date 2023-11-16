@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+//const errorHandler = require('./utils/error')
 const dotenv = require('dotenv')
 const userRouter = require('./routes/user.route.js')
 const authRouter = require('./routes/auth.route.js')

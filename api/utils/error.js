@@ -5,4 +5,4 @@ const errorHandler = (statusCode, message) => {
     return error;
 };
 
-module.export = errorHandler
+module.exports = errorHandler
