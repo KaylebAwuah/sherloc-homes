@@ -14,9 +14,21 @@ const signup = async (req, res, next) => {
             email,
             password: hashedPassword
         });
+
+        const existingUserName = await User.findOne({ username: username })
+
+        if (existingUserName !== null) {
+            next(errorHandler(401, `Cannot use this username, username ${newUser.username} is used `))
+        }
+
         await newUser.save();
         res.status(201).json('User created successfully!');
     } catch (error) {
+
+        if (error.code === 11000) {
+            // Duplicate key error (E11000)
+            return res.status(401).json(`Cannot use this username, username ${username} is already in use.`);
+        }
         next(error);
     }
 }
