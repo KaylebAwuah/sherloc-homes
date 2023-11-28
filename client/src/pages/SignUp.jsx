@@ -11,7 +11,7 @@ export default function SignUp() {
   const navigate = useNavigate()
   const handleChange = (e) => {
     setFormData({
-      ...formData,
+      ...formData, 
       [e.target.id]: e.target.value,
     });
   };
@@ -26,13 +26,12 @@ export default function SignUp() {
       },
       body: JSON.stringify(formData),
     })
-    const data = await res.json()
+    const data = await res.json() 
     console.log(data);
     if(data.success === false) {
       setLoading[false]
-      setError(data.message)
-     
-      return
+      setError(data.message)      
+      return 
     }
     setLoading(false)
     setError(null)
@@ -41,7 +40,7 @@ export default function SignUp() {
       setLoading(false)
       setError(error.message)
     } 
-  }
+  } 
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
@@ -75,7 +74,7 @@ export default function SignUp() {
           <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
-      {error && <p className='text-blue-500'>{error}</p>}
+      {error && <p className='text-red-500'>{error}</p>}
     </div>
   ); 
 }
