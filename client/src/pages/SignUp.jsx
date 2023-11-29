@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
-import { useState} from "react";
+import { useState } from "react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const [formData, setFormData] = useState({})
-  const [error, setError] = useState(null)
-  const[loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const [formData, setFormData] = useState({});
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({
       ...formData, 
@@ -26,12 +26,13 @@ export default function SignUp() {
       },
       body: JSON.stringify(formData),
     })
-    const data = await res.json() 
+    const data = await res.json()
     console.log(data);
     if(data.success === false) {
       setLoading[false]
-      setError(data.message)      
-      return 
+      setError(data.message)
+     
+      return
     }
     setLoading(false)
     setError(null)
@@ -40,32 +41,50 @@ export default function SignUp() {
       setLoading(false)
       setError(error.message)
     } 
-  } 
+  }
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
-      <form onSubmit={handleSubmit}  className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           placeholder="username"
           className="border p-3 rounded-lg"
-          id="username" onChange={handleChange}
+          id="username"
+          onChange={(e) => {
+            handleChange(e);
+            setName(e.target.value);
+          }}
+          value={username}
         />
         <input
           type="email"
           placeholder="email"
           className="border p-3 rounded-lg"
-          id="email" onChange={handleChange}
+          id="email"
+          onChange={(e) => {
+            handleChange(e);
+            setEmail(e.target.value);
+          }}
+          value={email}
         />
         <input
           type="password"
           placeholder="password"
           className="border p-3 rounded-lg"
-          id="password"  onChange={handleChange}
+          id="password"
+          onChange={(e) => {
+            handleChange(e);
+            setPass(e.target.value);
+          }}
+          value={password}
         />
 
-        <button disabled = {loading} className="bg-slate-900 text-white p-3 rounded-lg  uppercase hover:opacity-95 disabled:opacity-80">
-        {loading? 'loading...' : 'Sign up'}
+        <button
+          disabled={loading}
+          className="bg-slate-900 text-white p-3 rounded-lg  uppercase hover:opacity-95 disabled:opacity-80"
+        >
+          {loading ? "loading..." : "Sign up"}
         </button>
       </form>
       <div className="flex gap-2 mt-5">
@@ -74,8 +93,7 @@ export default function SignUp() {
           <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
-      {error && <p className='text-red-500'>{error}</p>}
+      {error && <p className='text-blue-500'>{error}</p>}
     </div>
-  ); 
+  );
 }
- 
