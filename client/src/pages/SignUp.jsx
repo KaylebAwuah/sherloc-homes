@@ -11,36 +11,48 @@ export default function SignUp() {
   const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({
-      ...formData, 
+      ...formData,
       [e.target.id]: e.target.value,
     });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    try { setLoading(true)
-      const res = await fetch('/api/auth/signup', 
-    {
-      method: 'POST',
-      headers: {
-        'content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-    const data = await res.json()
-    console.log(data);
-    if(data.success === false) {
-      setLoading[false]
-      setError(data.message)
-     
-      return
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.success === false) {
+        setLoading[false];
+        setError(data.message);
+
+        return;
+      }
+      setLoading(false);
+      setError(null);
+      setEmpty();
+      navigate("/sign-in");
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+      setEmpty();
     }
-    setLoading(false)
-    setError(null)
-    navigate('/sign-in')
-      } catch (error) {
-      setLoading(false)
-      setError(error.message)
-    } 
+  };
+
+  const [username, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPass] = useState("");
+
+  function setEmpty() {
+    setName("");
+    setEmail("");
+    setPass("");
   }
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -93,7 +105,7 @@ export default function SignUp() {
           <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
-      {error && <p className='text-blue-500'>{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 }
