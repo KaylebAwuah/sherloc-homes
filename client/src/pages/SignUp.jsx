@@ -15,6 +15,7 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     });
   };
+  fff
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -105,7 +106,7 @@ export default function SignUp() {
           <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
-      {error && <p className="text-blue-500">{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 }
