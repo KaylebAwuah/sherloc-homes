@@ -59,7 +59,6 @@ const signin = async (req, res, next) => {
     }
 };
 
-module.exports = { signin, signup }
 
 const google = async (req, res, next) => {
     try {
