@@ -7,7 +7,7 @@ export default function Profile() {
   const fileRef = useRef(null)
   const {currentUser} = useSelector((state) => state.user)
   const [file, setFile] = useState(undefined)
-  const [filePerc, setFilePerc] = useState(0)
+  const [filePerc, setFilePerc] = useState(0)// you no use the filePerc in the use state HOOK , try use am maybe e go work 
   console.log(file);
   useEffect(() => {
     handleFileUpload(file)
